@@ -1,15 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-postlistitem',
-  templateUrl: './postlistitem.component.html',
-  styleUrls: ['./postlistitem.component.scss']
+    selector: 'app-postlistitem',
+    templateUrl: './postlistitem.component.html',
+    styleUrls: ['./postlistitem.component.scss']
 })
-export class PostlistitemComponent implements OnInit {
+export class PostListItemComponent implements OnInit {
 
-  constructor() { }
+    @Input() PostListItemTitle: string;
+    @Input() PostListItemContent: string;
+    @Input() PostListItemLoveIts: string;
+    @Input() PostListItemCreated_at: string;
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
+    getColor() {
+        if (this.PostListItemLoveIts > 0) {
+            return 'green';
+        } else if (this.PostListItemLoveIts < 0) {
+            return 'red';
+        }
+    }
+
+    onLoveIts() {
+        this.PostListItemLoveIts++;
+    }
+
+    onDontLoveIts() {
+        this.PostListItemLoveIts--;
+    }
+
+    getContent() {
+        return this.PostListItemContent;
+    }
+
+    getLoveIts() {
+        return this.PostListItemLoveIts;
+    }
+
+    getCreated_at() {
+        return this.PostListItemCreated_at;
+    }
+
 
 }

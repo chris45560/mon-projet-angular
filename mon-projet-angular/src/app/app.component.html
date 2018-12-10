@@ -1,13 +1,9 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Blog</h2>
-      <ul class="list-group">
-
-      </ul>
-      <button class="btn btn-success"
-              [disabled]="!isAuth"
-              (click)="onAllumer()">Tout allumer</button>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Blog</h2>
+            <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' | uppercase }}</p>
+            <app-postlist [PostsList]="PostsList"></app-postlist>
+        </div>
     </div>
-  </div>
 </div>

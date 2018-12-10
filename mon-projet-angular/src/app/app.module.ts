@@ -3,18 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppareilComponent } from './appareil/appareil.component';
-import { PostlistComponent } from './postlist/postlist.component';
-import { PostlistitemComponent } from './postlistitem/postlistitem.component';
+import { PostListComponent } from './postlist/postlist.component';
+import { PostListItemComponent } from './postlistitem/postlistitem.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppareilComponent,
-    PostlistComponent,
-    PostlistitemComponent
+    PostListComponent,
+    PostListItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+      FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
