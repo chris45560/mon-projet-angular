@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h2>Blog</h2>
-            <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' | uppercase }}</p>
+            <p>Mis à jour : {{ lastUpdate | date: 'short'}}</p>
             <app-postlist [PostsList]="PostsList"></app-postlist>
         </div>
     </div>
