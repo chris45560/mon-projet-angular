@@ -2,10 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppareilComponent } from './appareil/appareil.component';
+import { PostlistComponent } from './postlist/postlist.component';
+import { PostlistitemComponent } from './postlistitem/postlistitem.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppareilComponent,
+    PostlistComponent,
+    PostlistitemComponent
   ],
   imports: [
     BrowserModule
