@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PostlistService} from '../services/postlist.service';
 
 @Component({
     selector: 'app-postlistitem',
@@ -7,47 +8,53 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PostListItemComponent implements OnInit {
 
-    @Input() PostListItemTitle: string;
-    @Input() PostListItemContent: string;
-    @Input() PostListItemLoveIts: number;
-    @Input() PostListItemCreated_at;
+    @Input() private postListItemTitle: string;
+    @Input() private postListItemContent: string;
+    @Input() private postListItemLoveIts: number;
+    @Input() private postListItemCreated_at: Date;
+    @Input() private indexOfPost: number;
+    @Input() private id: number;
 
-    constructor() {
+    constructor(private postlistService: PostlistService) {
     }
 
     ngOnInit() {
     }
 
-    getTitle() {
-        return this.PostListItemTitle;
+    getTitle(): string{
+        return this.postListItemTitle;
     }
 
     getContent() {
-        return this.PostListItemContent;
+        return this.postListItemContent;
     }
 
     getLoveIts() {
-        return this.PostListItemLoveIts;
+        return this.postListItemLoveIts;
     }
 
     getCreated_at() {
-        return this.PostListItemCreated_at;
+        return this.postListItemCreated_at;
     }
 
     getColor() {
-        if (this.PostListItemLoveIts > 0) {
+        if (this.postListItemLoveIts > 0) {
             return 'green';
-        } else if (this.PostListItemLoveIts < 0) {
+        } else if (this.postListItemLoveIts < 0) {
             return 'red';
         }
     }
 
+    onReset() {
+        this.postlistService.resetOne(this.indexOfPost);
+    }
+
     onLoveIts() {
-        this.PostListItemLoveIts++;
+        this.postlistService.loveItsOne(this.indexOfPost);
     }
 
     onDontLoveIts() {
-        this.PostListItemLoveIts--;
+        this.postlistService.dontLoveItsOne(this.indexOfPost);
     }
 
 }

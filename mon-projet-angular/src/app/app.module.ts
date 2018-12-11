@@ -1,24 +1,52 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { AppareilComponent } from './appareil/appareil.component';
-import { PostListComponent } from './postlist/postlist.component';
-import { PostListItemComponent } from './postlistitem/postlistitem.component';
-import { FormsModule } from '@angular/forms';
+import {AppComponent} from './app.component';
+import {AppareilComponent} from './appareil/appareil.component';
+import {PostListComponent} from './postlist/postlist.component';
+import {PostListItemComponent} from './postlistitem/postlistitem.component';
+import {FormsModule} from '@angular/forms';
+
+import {PostlistService} from './services/postlist.service';
+import {AuthComponent} from './auth/auth.component';
+import {PostViewComponent} from './post-view/post-view.component';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthService} from './services/auth.service';
+import { SinglePostComponent } from './single-post/single-post.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import {AuthGuard} from './services/auth-guard.service';
+
+const appRoutes: Routes = [
+    { path: 'posts', canActivate: [AuthGuard], component: PostViewComponent },
+    { path: 'posts/:id', canActivate: [AuthGuard], component: SinglePostComponent },
+    { path: 'auth', component: AuthComponent },
+    { path: '', component: PostViewComponent },
+    { path: 'not-found', component: FourOhFourComponent },
+    { path: '**', redirectTo: '/not-found' }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppareilComponent,
-    PostListComponent,
-    PostListItemComponent
-  ],
-  imports: [
-    BrowserModule,
-      FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AppareilComponent,
+        PostListComponent,
+        PostListItemComponent,
+        AuthComponent,
+        PostViewComponent,
+        SinglePostComponent,
+        FourOhFourComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes)
+    ],
+    providers: [
+        PostlistService,
+        AuthService,
+        AuthGuard
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

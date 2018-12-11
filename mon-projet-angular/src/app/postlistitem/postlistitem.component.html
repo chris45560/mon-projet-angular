@@ -1,9 +1,9 @@
 <li [ngClass]="{'list-group-item': true,
-                'list-group-item-success': PostListItemLoveIts > 0,
-                'list-group-item-danger': PostListItemLoveIts < 0}">
+                'list-group-item-success': postListItemLoveIts > 0,
+                'list-group-item-danger': postListItemLoveIts < 0}">
     <h4 [ngStyle]="{color: getColor()}">Post : {{ getTitle() }}</h4>
     <p [ngStyle]="{color: getColor()}">{{ getContent() }}</p>
-
+    <a [routerLink]="[id]">Détail</a>
     <button class="btn btn-success"
             (click)="onLoveIts()">J'aime
     </button>
@@ -15,4 +15,6 @@
     <p [ngStyle]="{color: getColor()}">Compteur : {{ getLoveIts() }}</p>
     <p [ngStyle]="{color: getColor()}">Date de création : {{ getCreated_at() | date: 'short'}}</p>
 
+    <button class="btn btn-success" (click)="onReset()"
+                                    [disabled]="postListItemLoveIts === 0">Reset le post</button>
 </li>

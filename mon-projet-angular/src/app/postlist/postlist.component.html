@@ -1,7 +1,10 @@
 <ul class="list-group">
-    <app-postlistitem *ngFor="let post of PostsList"
-                      [PostListItemTitle]="post.title"
-                      [PostListItemContent]="post.content"
-                      [PostListItemLoveIts]="post.loveIts"
-                      [PostListItemCreated_at]="post.created_at"></app-postlistitem>
+    <app-postlistitem *ngFor="let post of postsList; let i = index"
+                      [indexOfPost]="i"
+                      [postListItemTitle]="post.title"
+                      [postListItemContent]="post.content"
+                      [postListItemLoveIts]="post.loveIts"
+                      [postListItemCreated_at]="post.created_at"
+                      [id]="post.id">
+    </app-postlistitem>
 </ul>
