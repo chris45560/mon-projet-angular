@@ -15,10 +15,12 @@ import {AuthService} from './services/auth.service';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import {AuthGuard} from './services/auth-guard.service';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 const appRoutes: Routes = [
     { path: 'posts', canActivate: [AuthGuard], component: PostViewComponent },
     { path: 'posts/:id', canActivate: [AuthGuard], component: SinglePostComponent },
+    { path: 'edit', canActivate: [AuthGuard], component: EditPostComponent },
     { path: 'auth', component: AuthComponent },
     { path: '', component: PostViewComponent },
     { path: 'not-found', component: FourOhFourComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
         AuthComponent,
         PostViewComponent,
         SinglePostComponent,
-        FourOhFourComponent
+        FourOhFourComponent,
+        EditPostComponent
     ],
     imports: [
         BrowserModule,

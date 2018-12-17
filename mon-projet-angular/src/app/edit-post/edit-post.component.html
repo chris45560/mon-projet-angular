@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+                <label for="name">
+                    Titre du post
+                </label>
+                <input type="text" id="name" class="form-control" name="name" ngModel required>
+            </div>
+            <div class="form-group">
+                <label for="publish">
+                    Publié
+                </label>
+                <select id="publish" class="form-control" name="publish" [ngModel]="defaultPublish">
+                    <option value="oui">Publié</option>
+                    <option value="non">Non publié</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+        </form>
+    </div>
+</div>

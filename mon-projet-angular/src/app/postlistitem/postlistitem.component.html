@@ -4,17 +4,39 @@
     <h4 [ngStyle]="{color: getColor()}">Post : {{ getTitle() }}</h4>
     <p [ngStyle]="{color: getColor()}">{{ getContent() }}</p>
     <a [routerLink]="[id]">Détail</a>
-    <button class="btn btn-success"
-            (click)="onLoveIts()">J'aime
-    </button>
 
-    <button class="btn btn-danger"
-            (click)="onDontLoveIts()">Je n'aime pas
-    </button>
+    <div>
+        <button class="btn btn-success"
+                (click)="onLoveIts()">J'aime
+        </button>
+
+        <button class="btn btn-danger"
+                (click)="onDontLoveIts()">Je n'aime pas
+        </button>
+    </div>
 
     <p [ngStyle]="{color: getColor()}">Compteur : {{ getLoveIts() }}</p>
     <p [ngStyle]="{color: getColor()}">Date de création : {{ getCreated_at() | date: 'short'}}</p>
 
+    <div>
+        <button class="btn btn-success"
+                (click)="onPublish()"
+                *ngIf="postListItemPublish === 'non'">Publier ce post
+        </button>
+        <button class="btn btn-danger"
+                (click)="onUnpublish()"
+                *ngIf="postListItemPublish === 'oui'">Dépublier ce post
+        </button>
+    </div>
+
+    <p [ngClass]="{'list-group-item': true,
+                'list-group-item-success': getPublish() === 'oui',
+                'list-group-item-danger': getPublish() === 'non'}">
+        <strong>Post publié : {{ postListItemPublish }}</strong>
+    </p>
+
     <button class="btn btn-success" (click)="onReset()"
-                                    [disabled]="postListItemLoveIts === 0">Reset le post</button>
+            [disabled]="postListItemLoveIts === 0">Reset le post
+    </button>
+
 </li>

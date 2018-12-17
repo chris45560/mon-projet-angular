@@ -12,6 +12,7 @@ export class PostListItemComponent implements OnInit {
     @Input() private postListItemContent: string;
     @Input() private postListItemLoveIts: number;
     @Input() private postListItemCreated_at: Date;
+    @Input() private postListItemPublish: string;
     @Input() private indexOfPost: number;
     @Input() private id: number;
 
@@ -21,7 +22,7 @@ export class PostListItemComponent implements OnInit {
     ngOnInit() {
     }
 
-    getTitle(): string{
+    getTitle(): string {
         return this.postListItemTitle;
     }
 
@@ -35,6 +36,10 @@ export class PostListItemComponent implements OnInit {
 
     getCreated_at() {
         return this.postListItemCreated_at;
+    }
+
+    getPublish() {
+        return this.postListItemPublish;
     }
 
     getColor() {
@@ -55,6 +60,14 @@ export class PostListItemComponent implements OnInit {
 
     onDontLoveIts() {
         this.postlistService.dontLoveItsOne(this.indexOfPost);
+    }
+
+    onPublish() {
+        this.postlistService.publishOne(this.indexOfPost);
+    }
+
+    onUnpublish() {
+        this.postlistService.unpublishOne(this.indexOfPost);
     }
 
 }
