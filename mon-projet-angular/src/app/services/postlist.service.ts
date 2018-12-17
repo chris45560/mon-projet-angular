@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs';
+
 interface Post {
     id: number,
     title: string;
@@ -8,7 +10,9 @@ interface Post {
 
 export class PostlistService {
 
-    public postsList: Post[] = [
+    postSubject = new Subject<any[]>();
+
+    private postsList: Post[] = [
         {
             id: 1,
             title: '1er post',
@@ -32,6 +36,10 @@ export class PostlistService {
         }
     ];
 
+    emitPostSubject() {
+        this.postSubject.next(this.postsList.slice());
+    }
+
     getPostById(id: number) {
         const post = this.postsList.find(
             (postObject) => {
@@ -46,18 +54,22 @@ export class PostlistService {
             // console.log(post.loveIts);
             post.loveIts = 0;
         });
+        this.emitPostSubject();
     }
 
     public resetOne(index: number): void {
         this.postsList[index].loveIts = 0;
+        this.emitPostSubject();
     }
 
     public loveItsOne(index: number): void {
         this.postsList[index].loveIts++;
+        this.emitPostSubject();
     }
 
     public dontLoveItsOne(index: number): void {
         this.postsList[index].loveIts--;
+        this.emitPostSubject();
     }
 
 }
