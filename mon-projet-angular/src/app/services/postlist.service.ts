@@ -1,8 +1,11 @@
 import {Subject} from 'rxjs';
-import {post} from 'selenium-webdriver/http';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+
+// import {post} from 'selenium-webdriver/http';
 
 interface Post {
-    id: number,
+    id: number;
     title: string;
     content: string;
     loveIts: number;
@@ -10,36 +13,15 @@ interface Post {
     publish: string;
 }
 
+@Injectable()
 export class PostlistService {
 
     postSubject = new Subject<any[]>();
 
-    private postsList: Post[] = [
-        {
-            id: 1,
-            title: '1er post',
-            content: 'Description post 1',
-            loveIts: 1,
-            created_at: new Date(),
-            publish: 'oui'
-        },
-        {
-            id: 2,
-            title: '2ème post',
-            content: 'Description post 2',
-            loveIts: 1,
-            created_at: new Date(),
-            publish: 'non'
-        },
-        {
-            id: 3,
-            title: '3ème post',
-            content: 'Description post 3',
-            loveIts: -1,
-            created_at: new Date(),
-            publish: 'oui'
-        }
-    ];
+    private postsList: Post[] = [];
+
+    constructor(private httpClient: HttpClient) {
+    }
 
     emitPostSubject() {
         this.postSubject.next(this.postsList.slice());
@@ -102,5 +84,32 @@ export class PostlistService {
 
         this.postsList.push(postObject);
         this.emitPostSubject();
+    }
+
+    savePostsToServer() {
+        this.httpClient
+            .put('https://http-client-demo-45560.firebaseio.com/posts.json', this.postsList)
+            .subscribe(
+                () => {
+                    console.log('Enregistrement terminé !');
+                },
+                (error) => {
+                    console.log('Erreur de sauvegarde !' + error);
+                }
+            );
+    }
+
+    getPostsFromServer() {
+        this.httpClient
+            .get<any[]>('https://http-client-demo-45560.firebaseio.com/posts.json')
+            .subscribe(
+                (response) => {
+                    this.postsList = response;
+                    this.emitPostSubject();
+                },
+                (error) => {
+                    console.log('Erreur de chargement !' + error);
+                }
+            );
     }
 }

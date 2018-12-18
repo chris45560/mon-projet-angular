@@ -33,4 +33,12 @@ export class PostViewComponent implements OnInit {
         this.postlistService.resetLoveItsAll();
     }
 
+    onSave() {
+        this.postlistService.savePostsToServer();
+    }
+
+    onFetch() {
+        this.postlistService.getPostsFromServer();
+    }
+
 }

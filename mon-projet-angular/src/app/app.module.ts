@@ -6,6 +6,7 @@ import {AppareilComponent} from './appareil/appareil.component';
 import {PostListComponent} from './postlist/postlist.component';
 import {PostListItemComponent} from './postlistitem/postlistitem.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {PostlistService} from './services/postlist.service';
 import {AuthComponent} from './auth/auth.component';
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         RouterModule.forRoot(appRoutes)
     ],
     providers: [

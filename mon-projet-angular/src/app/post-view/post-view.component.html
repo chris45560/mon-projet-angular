@@ -2,5 +2,13 @@
     <h2>Blog</h2>
     <p>Mis à jour : {{ lastUpdate | date: 'short'}}</p>
     <app-postlist [postsList]="postsList"></app-postlist>
-    <button class="btn btn-danger" (click)="onReset()">Remettre à 0</button>
+    <button class="btn btn-danger"
+            (click)="onReset()">Remettre à 0
+    </button>
+    <button class="btn btn-success"
+            (click)="onSave()">Enregistrer
+    </button>
+    <button class="btn btn-primary"
+            (click)="onFetch()">Charger
+    </button>
 </div>
