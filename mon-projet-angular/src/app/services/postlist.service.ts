@@ -38,7 +38,6 @@ export class PostlistService {
 
     public resetLoveItsAll(): void {
         this.postsList.forEach((post: Post) => {
-            // console.log(post.loveIts);
             post.loveIts = 0;
         });
         this.emitPostSubject();
@@ -69,7 +68,13 @@ export class PostlistService {
         this.emitPostSubject();
     }
 
-    addPost(name: string, publish: string, date: Date) {
+    public deleteOne(index: number): void {
+        this.postsList.splice(index, 1);
+        this.savePostsToServer();
+        this.emitPostSubject();
+    }
+
+    addPost(name: string, content: string, publish: string, date: Date) {
         const postObject = {
             id: 0,
             title: '',
@@ -79,6 +84,7 @@ export class PostlistService {
             publish: ''
         };
         postObject.title = name;
+        postObject.content = content;
         postObject.publish = publish;
         postObject.id = this.postsList[(this.postsList.length - 1)].id + 1;
 

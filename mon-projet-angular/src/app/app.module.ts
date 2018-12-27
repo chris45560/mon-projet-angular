@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     {path: 'auth', component: AuthComponent},
     {path: 'users', component: UserListComponent},
     {path: 'new-user', component: NewUserComponent},
-    {path: '', component: PostViewComponent},
+    {path: '', canActivate: [AuthGuard], component: PostViewComponent},
     {path: 'not-found', component: FourOhFourComponent},
     {path: '**', redirectTo: '/not-found'}
 ];

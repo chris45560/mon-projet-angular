@@ -70,4 +70,8 @@ export class PostListItemComponent implements OnInit {
         this.postlistService.unpublishOne(this.indexOfPost);
     }
 
+    onDelete() {
+        this.postlistService.deleteOne(this.indexOfPost);
+    }
+
 }

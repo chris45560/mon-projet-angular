@@ -20,9 +20,10 @@ export class EditPostComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         const name = form.value['name'];
+        const content = form.value['content'];
         const publish = form.value['publish'];
         const date = new Date();
-        this.postlistService.addPost(name, publish, date);
+        this.postlistService.addPost(name, content, publish, date);
         this.router.navigate(['/posts']);
     }
 }

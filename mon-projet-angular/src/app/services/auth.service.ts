@@ -19,3 +19,15 @@ export class AuthService {
         this.isAuth = false;
     }
 }
+
+/*
+var test = function(test) {
+    blabla
+}
+*/
+/*** ES 6 ***/
+/*
+const test(test) => {
+    blabla
+}
+*/
